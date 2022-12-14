@@ -1,6 +1,6 @@
 
 var  fs = require("fs"); // file system
-var  https = require("https"); // creates an https server
+var  http = require("http"); // creates an http server
 var  path = require("path"); // used for working with url paths
 
   // used to create response headers
@@ -18,14 +18,8 @@ var  path = require("path"); // used for working with url paths
     "map":"application/json",
     "woff2": "application/font-woff2"
   };
-
-  options = {
-   key: fs.readFileSync('app/certs/localhost.key'),
-   cert: fs.readFileSync('app/certs/localhost.cert')
-  };
-
   // Start a secure server that uses the credentials in ssl/crt.pfx
-  server = https.createServer(options, function(request, response) {
+  server = http.createServer(function(request, response) {
 
     /* When requesting the homepage of a website, we usually only type
     www.mysite.com, but the server returns www.mysite.com/index.html. To make
@@ -62,4 +56,4 @@ var  path = require("path"); // used for working with url paths
 
   });
 
-  server.listen("443");
+  server.listen("8000");
